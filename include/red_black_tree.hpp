@@ -1,10 +1,8 @@
 #pragma once
 
-// Заголовочный файл с объявлением структуры данных
 
 namespace itis {
 
-  // Tip 1: объявите здесь необходимые структуры, функции, константы и прочее
   inline constexpr bool BLACK = true;
   inline constexpr bool RED = false;
 

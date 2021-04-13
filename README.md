@@ -1,8 +1,6 @@
 # Red Black Tree
 
-[![CMake](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml/badge.svg)](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml)
-
-**_Измените status badge сверху для отображения статуса сборки вашего проекта._**
+[![CMake](https://github.com/beleavemebe/semester-work-red-black-tree-solevarnya-inc/actions/workflows/cmake.yml/badge.svg)](https://github.com/beleavemebe/semester-work-red-black-tree-solevarnya-inc/actions/workflows/cmake.yml)
 
 `Actions > CMake > ... > Create status badge`
 
@@ -15,15 +13,15 @@ _Краткое описание семестрового проекта. Сле
 - _Какова теоретическая сложность операций (поиск за `O(log(n))`, вставка за `O(n^2)` и т.д.)?_
 - _Какая-то другая справочная информация о проекте._
 
-## Команда "название команды"
+**Красно-черное дерево** - бинарное дерево поиска, в котором механизм
+самобалансирования осуществляется на основе _цвета_ узла дерева,
+который принимает одно из двух значений --- красный или черный.
+
+## Команда "Solevarnya"
 
 | Фамилия Имя         | Вклад (%)  | Прозвище              |
 | :---                |   ---:     |  ---:                 |
 | Шемановский Роман   | 100        |  _солевар_            |
-
-
-**Девиз команды**
-> _Наши цели ясны. Задачи определены. За работу, товарищи!_
 
 ## Структура проекта
 
@@ -49,10 +47,6 @@ _В этом разделе задаются основые требования
 
 ## Сборка и запуск
 
-_Инструкция по сборке проекта, генерации тестовых данных, запуска контрольных тестов и примеров работы._
-
-_Постарайтесь написать инструкцию так, чтобы незнакомый с проектом человек смог самостоятельно всё запустить._
-
 ### Пример (Windows)
 
 #### Сборка проекта
@@ -61,14 +55,14 @@ _Постарайтесь написать инструкцию так, чтоб
 (либо используйте возможности IDE):
 
 ```shell
-git clone https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template.git
+git clone https://github.com/Algorithms-and-Data-Structures-2021/semester-work-red-black-tree-solevarnya-inc.git
 ```
 
 Для ручной сборки проекта в терминале введите:
 
 ```shell
 # переход в папку с проектом
-cd C:\Users\username\asd-projects\semester-work-template
+cd C:\Users\username\asd-projects\semester-work-red-black-tree-solevarnya-inc
 
 # создание папки для файлов сборки (чтобы не засорять папку с проектом) 
 mkdir -p build && cd build 
@@ -79,23 +73,19 @@ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && cmake --config RelWithDebInfo --bu
 
 #### Генерация тестовых данных
 
-_Опишите формат хранения (JSON, XML, CSV, YAML и т.д.) и процесс генерации тестовых данных._
-
-_Разрешается использовать собственный формат хранения данных._
-
-Генерация тестового набора данных в
-формате в формате LSD _(line separated digits)_:
+Генерация тестового набора данных в формате LSD _(line separated digits)_:
 
 ```shell
 # переход в папку генерации набора данных
 cd dataset
 
 # запуск исполняемого файла JAR
-java -jar Generator.jar <10> [15 000 000]
+java -jar Generator.jar <x> [y]
 ```
 
-- `--samples` - количество генерируемых элементов;
-- `<output>` - выходной файл и т.д.
+- `<x>` - количество генерируемых наборов данных;
+- `[y]` - максимальное количество чисел в последнем сгенерированном файле каждого набора 
+  (по умолчанию - 5 000 000)
 
 Первая строка - количество чисел в файле (совпадает с именем файла)
 
