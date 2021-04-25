@@ -35,6 +35,7 @@ target_compile_definitions(project_paths INTERFACE
 
 add_library(${PROJECT_NAME} STATIC
         src/red_black_tree.cpp
+        #src/RBTree.cpp
         include/red_black_tree.hpp)
 
 # включить предупреждения компилятора для библиотеки (линковка)

@@ -6,22 +6,46 @@ namespace itis {
   inline constexpr bool BLACK = true;
   inline constexpr bool RED = false;
 
+
   struct Node {
-    int key; // data as well
+    int key;
+    int* data = &key;
     Node *parent{nullptr};
-    Node *left{nullptr}; Node *right{nullptr};
+    Node *left{nullptr};
+    Node *right{nullptr};
     bool color = BLACK;
+
+    Node(Node* parent, int key, bool color)
+        : key(key), parent(parent), color(color) {}
+
+    ~Node() {
+      key = 0;
+      parent = nullptr;
+      left = nullptr;
+      right = nullptr;
+      color = BLACK;
+    }
   };
 
-  class RedBlackTree {
+  struct RedBlackTree {
    private:
     int size{0};
     Node* root{nullptr};
+    Node* find(int key, Node* node) const;
+    bool insert(int key, Node* node);
+    void remove(Node* node);
+    void fixInsertion(Node* node);
+    void fixDeletion(Node* node);
+    void rotateLeft(Node* node);
+    void rotateRight(Node* node);
+    Node* successor(Node* node);
+
 
    public:
-    int find(int key);
-    int find(int key, Node* node);
-    void insert(int element);
+    RedBlackTree();
+    ~RedBlackTree();
+    Node* find(int key) const;
+    void insert(int key);
     void remove(int key);
 
     int getSize() const {
