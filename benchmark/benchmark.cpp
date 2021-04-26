@@ -25,6 +25,7 @@ int main() {
 
   int amounts[] = {100, 500, 5000, 20000, 100000, 500000, 1000000, 2500000, 5000000, 7500000, 10000000};
   out << "set\tamount\ttry\tadd\tsearch\tremove" << "\n";
+  cout << "set\tamount\ttry\tadd\tsearch\tremove" << "\n";
   for (int& i : amounts) {
     runAmount(dataPath, i, out);
   }
@@ -60,25 +61,27 @@ void runAmount(string &rootPath, int amount, ofstream &out) {
         break;
 
     for (int Try = 1; Try < 11; Try++) {
-      auto *tree = new RedBlackTree();
+      auto *tree = new RedBlackTree;
 
       out << datasetNumber << "\t" << amount << "\t" << Try << "\t";
-      const auto preStamp = chrono::high_resolution_clock::now();
+      const auto preAddStamp = chrono::high_resolution_clock::now();
 
       runFile(add, 0, tree);
       const auto postAddStamp = chrono::high_resolution_clock::now();
-      out << chrono::duration_cast<chrono::nanoseconds>(postAddStamp - preStamp).count();
-      out << "\t";
+      out << chrono::duration_cast<chrono::nanoseconds>(postAddStamp - preAddStamp).count() << "\t";
 
       runFile(search, 1, tree);
       const auto postSearchStamp = chrono::high_resolution_clock::now();
-      out << chrono::duration_cast<chrono::nanoseconds>(postSearchStamp - postAddStamp).count();
-      out << "\t";
+      out << chrono::duration_cast<chrono::nanoseconds>(postSearchStamp - postAddStamp).count() << "\t";
 
       runFile(remove, 2, tree);
       const auto postRemoveStamp = chrono::high_resolution_clock::now();
-      out << chrono::duration_cast<chrono::nanoseconds>(postRemoveStamp - postSearchStamp).count();
-      out << "\t" << "\n";
+      out << chrono::duration_cast<chrono::nanoseconds>(postRemoveStamp - postSearchStamp).count() << "\t" << "\n";
+
+      cout << datasetNumber << "\t" << amount << "\t" << Try << "\t";
+      cout << chrono::duration_cast<chrono::nanoseconds>(postAddStamp - preAddStamp).count() << "\t";
+      cout << chrono::duration_cast<chrono::nanoseconds>(postSearchStamp - postAddStamp).count() << "\t";
+      cout << chrono::duration_cast<chrono::nanoseconds>(postRemoveStamp - postSearchStamp).count() << "\t" << "\n";
 
       delete tree;
     }

@@ -1,3 +1,5 @@
+#include <queue>
+#include <iostream>
 #include "red_black_tree.hpp"
 
 // файл с определениями
@@ -17,23 +19,51 @@ namespace itis {
     return find(key, root);
   }
 
+  void RedBlackTree::insert(int key) {
+    if (insert(key, root)) {
+      size++;
+    }
+  }
+
+  void RedBlackTree::remove(int key) {
+    auto* node = find(key);
+    if (node != nullptr) {
+      remove(node);
+    }
+  }
+
+  void RedBlackTree::traverse() {
+    std::queue<Node *> nodes;
+    nodes.push(root);
+
+    while (!nodes.empty()) {
+      const auto * focus = nodes.front();
+      nodes.pop();
+
+      std::cout << focus->key << '\t';
+
+      if (focus->left != nullptr) {
+        nodes.push(focus->left);
+      }
+
+      if (focus->right != nullptr) {
+        nodes.push(focus->right);
+      }
+    }
+  }
+
+
   Node* RedBlackTree::find(int key, Node* node) const {
     if (node != nullptr) {
-
-      if (key == node->key)
+      if (key == node->key) {
         return node;
-
+      }
       if (key > node->key) {
         return find(key, node->right);
       }
-
       return find(key, node->left);
     }
     return nullptr;
-  }
-
-  void RedBlackTree::insert(int key) {
-    if (insert(key, root)) size++;
   }
 
   bool RedBlackTree::insert(int key, Node* node) {
@@ -53,7 +83,7 @@ namespace itis {
         node = node->right;
       }
     }
-    Node* newNode = new Node(y, key, RED);
+    auto* newNode = new Node(y, key, RED);
     if (y == nullptr) {
       root = newNode;
     } else if (newNode->key < y->key) {
@@ -61,8 +91,9 @@ namespace itis {
     } else {
       y->right = newNode;
     }
-    if (newNode->parent->parent != nullptr)
+    if (newNode->parent->parent != nullptr) {
       fixInsertion(newNode);
+    }
     return true;
   }
 
@@ -103,13 +134,6 @@ namespace itis {
       }
     }
     root->color = BLACK;
-  }
-
-  void RedBlackTree::remove(int key) {
-    auto* node = find(key);
-    if (node != nullptr) {
-      remove(node);
-    }
   }
 
   void RedBlackTree::remove(Node* node) {
@@ -220,9 +244,6 @@ namespace itis {
   }
 
   Node* RedBlackTree::successor(Node* target) {
-    if (target == nullptr)
-      return nullptr;
-
     if (target->right != nullptr) {
       auto* p = target->right;
       while (p->left != nullptr) {
@@ -230,7 +251,6 @@ namespace itis {
       }
       return p;
     }
-
     auto* p = target->parent;
     auto* ch = target;
     while (p != nullptr && ch == p->right) {
@@ -281,38 +301,3 @@ namespace itis {
   }
 
 }  // namespace itis
-
-// govnocode
-
-//size--;
-//if (node->left == nullptr && node->right == nullptr) {
-//// child free
-//if (node == node->parent->left) {
-//node->parent->left = nullptr;
-//} else {
-//node->parent->right = nullptr;
-//}
-//} else if (node->left == nullptr ^ node->right == nullptr) {
-//// one child
-//if (node == node->parent->left) {
-//if (node->left == nullptr) {
-//node->parent->left = node->right;
-//} else {
-//node->parent->left = node->left;
-//}
-//node->parent->left->color = BLACK;
-//} else {
-//if (node->left == nullptr) {
-//node->parent->right = node->right;
-//} else {
-//node->parent->right = node->left;
-//}
-//node->parent->right->color = BLACK;
-//}
-//} else {
-//// two children
-//auto* succ = successor(node);
-//node->key = succ->key;
-//remove(succ);
-//}
-//fixDeletion(node);

@@ -8,7 +8,7 @@ using namespace itis;
 int main(int argc, char *argv[]) {
   for (int index = 0; index < argc; index++) {
     cout << index << ": " << argv[index] << endl;
-    auto* tree = new RedBlackTree();
+    auto* tree = new RedBlackTree;
     tree->insert(13);
     tree->insert(8);
     tree->insert(1);
@@ -22,6 +22,7 @@ int main(int argc, char *argv[]) {
 
     tree->remove(13);
     cout << "hey" << endl;
+    tree->traverse();
   }
   return 0;
 }
