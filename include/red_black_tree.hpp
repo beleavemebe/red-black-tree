@@ -15,8 +15,8 @@ namespace itis {
     Node *right{nullptr};
     bool color = BLACK;
 
-    Node(Node* parent, int key, bool color)
-        : key(key), parent(parent), color(color) {}
+    Node(Node* parent_, int key_, bool color_)
+        : key(key_), parent(parent_), color(color_) {}
 
     ~Node() {
       key = 0;

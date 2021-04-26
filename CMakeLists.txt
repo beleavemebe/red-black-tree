@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 # Определите название вашего проекта (должно совпадать с названием репозитория).
 # Примечание: замените символ '-' на '_'.
-project(semester_work_template CXX)
+project(semester-work-template-red-black-tree-solevarnya-inc CXX)
 
 # === Определение стандарта C++ для всего проекта ===
 
@@ -35,7 +35,6 @@ target_compile_definitions(project_paths INTERFACE
 
 add_library(${PROJECT_NAME} STATIC
         src/red_black_tree.cpp
-        #src/RBTree.cpp
         include/red_black_tree.hpp)
 
 # включить предупреждения компилятора для библиотеки (линковка)
