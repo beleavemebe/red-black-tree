@@ -1,5 +1,3 @@
-#include <queue>
-#include <iostream>
 #include "red_black_tree.hpp"
 
 // файл с определениями
@@ -32,27 +30,6 @@ namespace itis {
     }
   }
 
-  void RedBlackTree::traverse() {
-    std::queue<Node *> nodes;
-    nodes.push(root);
-
-    while (!nodes.empty()) {
-      const auto * focus = nodes.front();
-      nodes.pop();
-
-      std::cout << focus->key << '\t';
-
-      if (focus->left != nullptr) {
-        nodes.push(focus->left);
-      }
-
-      if (focus->right != nullptr) {
-        nodes.push(focus->right);
-      }
-    }
-  }
-
-
   Node* RedBlackTree::find(int key, Node* node) const {
     if (node != nullptr) {
       if (key == node->key) {
@@ -65,6 +42,7 @@ namespace itis {
     }
     return nullptr;
   }
+
 
   bool RedBlackTree::insert(int key, Node* node) {
     if (root == nullptr) {

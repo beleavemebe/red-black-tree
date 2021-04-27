@@ -39,14 +39,12 @@ namespace itis {
     void rotateRight(Node* node);
     Node* successor(Node* node);
 
-
    public:
     RedBlackTree();
     ~RedBlackTree();
     Node* find(int key) const;
     void insert(int key);
     void remove(int key);
-    void traverse();
 
     int getSize() const {
       return size;
