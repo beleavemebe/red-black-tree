@@ -57,7 +57,7 @@
 1. С++ компилятор c поддержкой стандарта C++17 (например, _GNU GCC 8.1.x_ и выше).
 2. Система автоматизации сборки _CMake_ (версия _3.12.x_ и выше).
 3. Java Runtime Environment _(JRE)_ версии 8 и выше.
-4. Рекомендуемый объем оперативной памяти - не менее 4 ГБ.
+4. Рекомендуемый объем оперативной памяти - не менее 6 ГБ.
 5. Свободное дисковое пространство объемом ~ 2 ГБ (набор данных для контрольных тестов).
 
 ## Сборка и запуск
@@ -180,14 +180,14 @@ nvim metrics.tsv
 
 ## Источники
 
-[Статья на Википедии](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
+- [Статья на Википедии](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 
-[Статья на Хабре](https://habr.com/ru/post/330644)
+- [Статья на Хабре](https://habr.com/ru/post/330644)
 
-[Викиконспект ИТМО](https://neerc.ifmo.ru/wiki/index.php?title=%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE-%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B5_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE)
+- [Викиконспект ИТМО](https://neerc.ifmo.ru/wiki/index.php?title=%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE-%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B5_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE)
 
-[Лекция МФТИ ФПМИ](https://www.youtube.com/watch?v=RnQYXltlkrI)
+- [Лекция МФТИ ФПМИ](https://www.youtube.com/watch?v=RnQYXltlkrI)
 
-[Видео Володи Моженкова](https://www.youtube.com/watch?v=n7Y2karbxF4)
+- [Видео Володи Моженкова](https://www.youtube.com/watch?v=n7Y2karbxF4)
 
-[Визуализатор](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+- [Визуализатор](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)

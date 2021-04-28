@@ -33,8 +33,8 @@ int main(int argc, char* argv[]) {
   }
 
   int amounts[] = {100, 500, 5000, 20000, 100000, 500000, 1000000, 2500000, 5000000, 7500000, 10000000};
-  out << "set\tamount\ttry\tadd\tsearch\tremove" << "\n";
-  cout << "set\tamount\ttry\tadd\tsearch\tremove" << endl;
+  out << "set \tamount \ttry \tadd \tsearch \tremove " << "\n";
+  cout << "set \tamount \ttry \tadd \tsearch \tremove " << endl;
   for (int& i : amounts) {
       runAmount(dataPath, i, out, tries);
   }

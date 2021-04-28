@@ -1,7 +1,5 @@
 #include "red_black_tree.hpp"
 
-// файл с определениями
-
 namespace itis {
 
   RedBlackTree::RedBlackTree() : size(0), root(nullptr) {}
