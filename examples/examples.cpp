@@ -19,6 +19,8 @@ int main() {
     tree->insert(27);
 
     tree->remove(13);
+    tree->remove(25);
+    tree->remove(1);
     cout << tree->find(13) << endl; // 0
     cout << tree->find(11) << endl;
     return 0;

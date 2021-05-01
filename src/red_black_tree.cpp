@@ -113,6 +113,7 @@ namespace itis {
   }
 
   void RedBlackTree::remove(Node* node) {
+    size--;
     if (node->left != nullptr && node->right != nullptr) {
       auto* succ = successor(node);
       node->key = succ->key;
@@ -133,90 +134,90 @@ namespace itis {
       } else {
         node->parent->right = replacement;
       }
-
       node->right = node->left = node->parent = nullptr;
-
       if (node->color == BLACK) {
         fixDeletion(node);
-        delete node;
       }
+      delete node;
     } else if (node->parent == nullptr) {
+      delete node;
       root = nullptr;
     } else {
       if (node->color == BLACK) {
         fixDeletion(node);
       }
-
       if (node->parent != nullptr) {
         if (node == node->parent->left) {
           node->parent->left = nullptr;
-        } else {
+        } else if (node == node->parent->right) {
           node->parent->right = nullptr;
         }
         node->parent = nullptr;
-
         delete node;
       }
     }
   }
 
   void RedBlackTree::fixDeletion(Node* node) {
-    while (node != root && node->color != BLACK) {
-      if (node == node->parent->left) {
-        auto* brother = node->parent->right;
+    while (node != root && colorOf(node) == BLACK) {
+      if (node == nullptr) return;
+      if (node == leftOf(parentOf(node))) {
+        Node* brother = rightOf(parentOf(node));
 
-        if (brother->color == RED) {
-          brother->color = BLACK;
-          node->parent->color = RED;
-          rotateLeft(node->parent);
-          brother = node->parent->right;
+        if (colorOf(brother) == RED) {
+          setColor(brother, BLACK);
+          setColor(parentOf(node), RED);
+          rotateLeft(parentOf(node));
+          brother = rightOf(parentOf(node));
         }
 
-        if (brother->left->color == BLACK && brother->right->color == BLACK) {
-          brother->color = RED;
-          node = node->parent;
+        if (colorOf(leftOf(brother))  == BLACK &&
+            colorOf(rightOf(brother)) == BLACK) {
+          setColor(brother, RED);
+          node = parentOf(node);
         } else {
-          if (brother->right->color == BLACK) {
-            brother->left->color = BLACK;
-            brother->color = RED;
+          if (colorOf(rightOf(brother)) == BLACK) {
+            setColor(leftOf(brother), BLACK);
+            setColor(brother, RED);
             rotateRight(brother);
-            brother = node->parent->right;
+            brother = rightOf(parentOf(node));
           }
-          brother->color = node->parent->color;
-          node->parent->color = BLACK;
-          brother->right->color = BLACK;
-          rotateLeft(node->parent);
+          setColor(brother, colorOf(parentOf(node)));
+          setColor(parentOf(node), BLACK);
+          setColor(rightOf(brother), BLACK);
+          rotateLeft(parentOf(node));
           node = root;
         }
       } else {
-        auto* brother = node->parent->left;
+        Node* brother = leftOf(parentOf(node));
 
-        if (brother->color == RED) {
-          brother->color = BLACK;
-          node->parent->color = RED;
-          rotateRight(node->parent);
-          brother = node->parent->left;
+        if (colorOf(brother) == RED) {
+          setColor(brother, BLACK);
+          setColor(parentOf(node), RED);
+          rotateRight(parentOf(node));
+          brother = leftOf(parentOf(node));
         }
 
-        if (brother->right->color == BLACK && brother->left->color == BLACK) {
-          brother->color = RED;
-          node = node->parent;
+        if (colorOf(rightOf(brother)) == BLACK &&
+            colorOf(leftOf(brother)) == BLACK) {
+          setColor(brother, RED);
+          node = parentOf(node);
         } else {
-          if (brother->left->color == BLACK) {
-            brother->right->color = BLACK;
-            brother->color = RED;
+          if (colorOf(leftOf(brother)) == BLACK) {
+            setColor(rightOf(brother), BLACK);
+            setColor(brother, RED);
             rotateLeft(brother);
-            brother = node->parent->left;
+            brother = leftOf(parentOf(node));
           }
-          brother->color = node->parent->color;
-          node->parent->color = BLACK;
-          brother->left->color = BLACK;
-          rotateRight(node->parent);
+          setColor(brother, colorOf(parentOf(node)));
+          setColor(parentOf(node), BLACK);
+          setColor(leftOf(brother), BLACK);
+          rotateRight(parentOf(node));
           node = root;
         }
       }
     }
-    node->color = BLACK;
+    setColor(node, BLACK);
   }
 
   Node* RedBlackTree::successor(Node* target) {
@@ -234,6 +235,30 @@ namespace itis {
       p = p->parent;
     }
     return p;
+  }
+
+  // Null safety
+
+  bool RedBlackTree::colorOf(Node* node) {
+    return node == nullptr ? BLACK : node->color;
+  }
+
+  Node* RedBlackTree::parentOf(Node* node) {
+    return node == nullptr ? nullptr : node->parent;
+  }
+
+  Node* RedBlackTree::leftOf(Node* node) {
+    return node == nullptr ? nullptr : node->left;
+  }
+
+  Node* RedBlackTree::rightOf(Node* node) {
+    return node == nullptr ? nullptr : node->right;
+  }
+
+  void RedBlackTree::setColor(Node* node, bool color) {
+    if (node != nullptr) {
+      node->color = color;
+    }
   }
 
   void RedBlackTree::rotateRight(Node* x) {

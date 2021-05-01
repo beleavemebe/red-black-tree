@@ -20,17 +20,16 @@ void runAmount(string &rootPath, int amount, ofstream &out, int tries);
 int main(int argc, char* argv[]) {
   string dataPath = string(kProjectPath).append("/dataset/data");
 
-  ofstream out;
-  out.open("metrics.tsv", ios::app);
-
-  // Парсинг количества прогонов
   int tries;
   try {
       tries = stoi(argv[1]);
   } catch (logic_error &a) {
-      cout << "You have to specify the amount of reruns";
+      cout << "Необходимо указать количество прогонов";
       return -1;
   }
+
+  ofstream out;
+  out.open("metrics.tsv", ios::app);
 
   int amounts[] = {100, 500, 5000, 20000, 100000, 500000, 1000000, 2500000, 5000000, 7500000, 10000000};
   out << "set \tamount \ttry \tadd \tsearch \tremove " << "\n";
@@ -109,19 +108,24 @@ void runFile(string &path, int operationCode, RedBlackTree* tree) {
   int amountOfNumbers = stoi(buffer);
   for (int i = 0; i < amountOfNumbers; ++i) {
     getline(file, buffer);
-    int integer = stoi(buffer);
-    switch (operationCode) {
-      case 0:
-        tree->insert(integer);
-        break;
-      case 1:
-        tree->find(integer);
-        break;
-      case 2:
-        tree->remove(integer);
-        break;
-      default:
-        break;
+    try {
+      int integer = stoi(buffer);
+      switch (operationCode) {
+        case 0:
+          tree->insert(integer);
+          break;
+        case 1:
+          tree->find(integer);
+          break;
+        case 2:
+          tree->remove(integer);
+          break;
+        default:
+          break;
+      }
+    } catch (logic_error err) {
+      continue;
     }
+
   }
 }
