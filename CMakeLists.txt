@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 # Определите название вашего проекта (должно совпадать с названием репозитория).
 # Примечание: замените символ '-' на '_'.
-project(semester-work-red-black-tree-solevarnya-inc CXX)
+project(red-black-tree CXX)
 
 # === Определение стандарта C++ для всего проекта ===
 

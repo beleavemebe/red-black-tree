@@ -1,6 +1,6 @@
 # Red-Black Tree
 
-[![CMake](https://github.com/beleavemebe/semester-work-red-black-tree-solevarnya-inc/actions/workflows/cmake.yml/badge.svg)](https://github.com/beleavemebe/semester-work-red-black-tree-solevarnya-inc/actions/workflows/cmake.yml)
+[![CMake](https://github.com/beleavemebe/red-black-tree/actions/workflows/cmake.yml/badge.svg)](https://github.com/beleavemebe/red-black-tree/actions/workflows/cmake.yml)
 
 **Красно-черное дерево** - бинарное дерево поиска, в котором механизм
 самобалансирования осуществляется на основе _цвета_ узла дерева,
@@ -32,16 +32,6 @@
 | Поиск   |   `O(log(n))`       |  `O(log(n))`          |
 | Удаление   |     `O(log(n))`     |  `O(log(n))`            |
 
-## Команда "Solevarnya"
-
-| Фамилия Имя         | Вклад (%)  | Прозвище              |
-| :---                |   ---:     |  ---:                 |
-| Шемановский Роман   | 100        |  _солевар_            |
-
-**Девиз команды**
-
-> Снова концентрация, снова мотивация, снова рад стараться... Я быть талантом уже даже _устал_
-
 ## Структура проекта
 
 Проект состоит из следующих частей:
@@ -70,14 +60,14 @@
 (либо используйте возможности IDE):
 
 ```shell
-git clone https://github.com/Algorithms-and-Data-Structures-2021/semester-work-red-black-tree-solevarnya-inc.git
+git clone https://github.com/beleavemebe/red-black-tree.git
 ```
 
 Для ручной сборки проекта в терминале введите:
 
 ```shell
 # переход в папку с проектом
-cd C:\Users\username\asd-projects\semester-work-red-black-tree-solevarnya-inc
+cd C:\Users\username\asd-projects\red-black-tree
 
 # создание папки для файлов сборки (чтобы не засорять папку с проектом) 
 mkdir -p build && cd build 
